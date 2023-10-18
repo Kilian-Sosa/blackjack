@@ -54,6 +54,7 @@
         }
     }
 
+    public class Croupier: BlackJackPlayer
     {
         public Croupier(): base("Croupier") { }
     }
