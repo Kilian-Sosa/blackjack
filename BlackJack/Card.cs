@@ -7,8 +7,14 @@
 
         public Card(CardSuit suit, int value)
         {
-            suit = suit;
-            value = value;
+            this.suit = suit;
+            this.value = value;
+        }
+
+        public int Value
+        {
+            get { return value; }
+            private set { this.value = value; }
         }
 
         public string ToString()
