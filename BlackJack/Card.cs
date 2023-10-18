@@ -17,7 +17,7 @@
             private set { this.value = value; }
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return $"{value} of {suit}";
         }

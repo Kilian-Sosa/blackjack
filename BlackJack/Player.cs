@@ -11,6 +11,12 @@
             this.name = name;
         }
 
+        public string Name
+        {
+            get { return name; }
+            private set { this.name = value; }
+        }
+
         public virtual void Draw(Deck deck)
         {
             hand.Add(deck.Draw());
@@ -19,7 +25,7 @@
         public void Print()
         {
             Console.WriteLine($"{name}'s hand:");
-            foreach (Card card in hand) card.ToString();
+            foreach (Card card in hand) Console.WriteLine(card.ToString());
         }
     }
 
@@ -39,7 +45,7 @@
         {
             score = 0;
             foreach (Card card in hand) score += card.Value;
-            if (HasAce() && score + 10 <= 21) score += 11;
+            if (HasAce() && score + 10 <= 21) score += 10;
         }   
 
         public int Score
@@ -70,7 +76,7 @@
         public void PrintFirstCard()
         {
             Console.WriteLine($"{name}'s hand:");
-            hand[0].ToString();
+            Console.WriteLine(hand[0].ToString());
         }
     }
 }

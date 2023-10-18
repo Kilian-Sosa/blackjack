@@ -26,7 +26,7 @@
 
         public void Print()
         {
-            foreach (Card card in cards) Console.WriteLine(card);
+            foreach (Card card in cards) Console.WriteLine(card.ToString());
         }
     }
 }
