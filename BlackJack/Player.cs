@@ -11,7 +11,7 @@
             this.name = name;
         }
 
-        public void Draw(Deck deck)
+        public virtual void Draw(Deck deck)
         {
             hand.Add(deck.Draw());
         }
@@ -19,13 +19,13 @@
         public void Print()
         {
             Console.WriteLine($"{name}'s hand:");
-            foreach (Card card in hand) Console.WriteLine(card);
+            foreach (Card card in hand) card.ToString();
         }
     }
 
     public class BlackJackPlayer: Player
     {
-        private int score { get; set; }
+        protected int score { get; set; }
 
         public BlackJackPlayer(string name): base(name) { }
 
@@ -57,5 +57,20 @@
     public class Croupier: BlackJackPlayer
     {
         public Croupier(): base("Croupier") { }
+
+        public override void Draw(Deck deck)
+        {
+            while (score < 17)
+            {
+                base.Draw(deck);
+                CalculateScore();
+            }
+        }
+
+        public void PrintFirstCard()
+        {
+            Console.WriteLine($"{name}'s hand:");
+            hand[0].ToString();
+        }
     }
 }
