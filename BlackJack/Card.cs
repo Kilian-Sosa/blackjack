@@ -17,16 +17,36 @@
         }
         private string ValueToString() {
             switch (value) {
-                case 1: return "Ace";
-                case 10: return "Jack";
-                case 11: return "Queen";
-                case 12: return "King";
+                case 1: return "A";
+                case 10: return "J";
+                case 11: return "Q";
+                case 12: return "K";
                 default: return value.ToString();
             }
         }
 
+        public string GetSuitIcon(){
+            switch (suit)
+            {
+                case CardSuit.Clubs: return "\u2663";   //♣
+                case CardSuit.Diamonds: return "\u2666";//♦
+                case CardSuit.Hearts: return "\u2665";  //♥
+                case CardSuit.Spades: return "\u2660";  //♠
+                default: return "";
+            }
+        }
+
         public override string ToString() {
-            return $"{ValueToString()} of {suit}";
+            string value = ValueToString();
+            string cardString = $"+-------+\n|{value}      |\n|       |\n|   {GetSuitIcon()}   |\n|       |\n|      {value}|\n+-------+";
+            return cardString;
+            //+-------+
+            //|K      |
+            //|       |
+            //|   ♠   |
+            //|       |
+            //|      K|
+            //+-------+
         }
     }
 }

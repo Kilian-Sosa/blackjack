@@ -72,6 +72,13 @@
         public void PrintFirstCard(){
             Console.WriteLine($"{name}'s hand:");
             Console.WriteLine(hand[0].ToString());
+            Console.WriteLine("+-------+");
+            Console.WriteLine("|?      |");
+            Console.WriteLine("|       |");
+            Console.WriteLine("|   ?   |");
+            Console.WriteLine("|       |");
+            Console.WriteLine("|      ?|");
+            Console.WriteLine("+-------+");
         }
     }
 }
