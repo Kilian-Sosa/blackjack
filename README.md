@@ -1,7 +1,7 @@
 # BlackJack
 BlackJack 21 game in the shell made in C#
 
-## Gamme rules
+## Game rules
 The main objective of Blackjack 21 is to obtain a hand of cards whose total value is 21 or as close to that number as possible without going over. <br>
 Numbered cards (2 to 10) are worth their face value. Face cards (king, queen, and jack) are each worth 10 points. The ace can be worth 1 or 11 points, depending on what is better for your hand. <br>
 The player receives two cards face-up, while the dealer (representing the casino) receives one card face-up and one face-down. <br>
