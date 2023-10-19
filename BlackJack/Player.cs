@@ -2,8 +2,8 @@
 {
     public class Player
     {
-        protected List<Card> hand { get; set; }
-        protected string name { get; set; }
+        protected List<Card> hand;
+        protected string name;
 
         public Player(string name)
         {
@@ -44,8 +44,14 @@
         public void CalculateScore()
         {
             score = 0;
-            foreach (Card card in hand) score += card.Value;
+            foreach (Card card in hand)
+            {
+                if (card.Value > 10) score += 10;
+                else score += card.Value;
+
+            }
             if (HasAce() && score + 10 <= 21) score += 10;
+            
         }   
 
         public int Score
@@ -71,6 +77,12 @@
                 base.Draw(deck);
                 CalculateScore();
             }
+        }
+
+        public void Print(int num = 0)
+        {
+            if (num == 0) base.Print();
+            else  PrintFirstCard();
         }
 
         public void PrintFirstCard()

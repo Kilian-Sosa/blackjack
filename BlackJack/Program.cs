@@ -11,13 +11,16 @@
 
             Console.WriteLine("Welcome to BlackJack!");
             Console.WriteLine("Enter your name");
-            player = new BlackJackPlayer(Console.ReadLine());
+            player = new BlackJackPlayer(Console.ReadLine() ?? "");
 
             InitializeGame();
 
             bool hasFinished = false;
             while (!hasFinished)
             {
+                Console.WriteLine($"You are now at : {player.Score}");
+                if (player.Score == 21) break;
+
                 string answer = AskForAnotherCard();
 
                 if (answer == "n") hasFinished = true;
@@ -42,14 +45,16 @@
             deck.Shuffle();
             croupier.Draw(deck);
             croupier.Draw(deck);
+            croupier.CalculateScore();
             player.Draw(deck);
             player.Draw(deck);
+            player.CalculateScore();
             PrintCards();
         }
 
-        public static void PrintCards()
+        public static void PrintCards(int num = 1)
         {
-            croupier.PrintFirstCard();
+            croupier.Print(num);
             Console.WriteLine();
             player.Print();
             Console.WriteLine();
@@ -66,15 +71,19 @@
         public static void CheckResult()
         {
             Console.Clear();
-            PrintCards();
+            PrintCards(0);
             Console.WriteLine($"Croupier Score: {croupier.Score}");
             Console.WriteLine($"{player.Name} Score: {player.Score}");
             if (player.IsBust()) Console.WriteLine("You are bust!");
             if (croupier.IsBust()) Console.WriteLine("Croupier is bust!");
 
-            if (player.Score > croupier.Score && !player.IsBust()) Console.WriteLine("You win!");
-            else if (player.Score < croupier.Score && !croupier.IsBust()) Console.WriteLine("You lose!");
-            else Console.WriteLine("Draw!");
+            if (player.IsBust() && croupier.IsBust() || player.Score == croupier.Score) Console.WriteLine("Draw!");
+            else if (!player.IsBust() && croupier.IsBust()) Console.WriteLine("You win!");
+            else if (player.IsBust() && !croupier.IsBust()) Console.WriteLine("You lose!");
+            else
+                if (croupier.Score < player.Score) Console.WriteLine("You win!");
+                else if (player.Score < croupier.Score) Console.WriteLine("You lose!");
+                else Console.WriteLine("Draw!");
         }
     }
 }
