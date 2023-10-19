@@ -5,7 +5,7 @@
         private static BlackJackPlayer player;
 
         public static void Main() {
-
+            Console.OutputEncoding = System.Text.Encoding.UTF8; // For the card symbols to work
             Console.WriteLine("Welcome to BlackJack!");
             Console.WriteLine("Enter your name");
             player = new BlackJackPlayer(Console.ReadLine() ?? "");
@@ -56,7 +56,10 @@
         public static string AskForAnotherCard() {
             Console.WriteLine("Do you want to draw another card? (y/n)");
             string answer = string.Empty;
-            while (answer != "y" && answer != "n") answer = Console.ReadLine().ToLower();
+            while (answer != "y" && answer != "n"){
+                answer = Console.ReadLine() ?? "".ToLower();
+                if (answer != "y" && answer != "n") Console.WriteLine("Please enter y or n");
+            }
             return answer;
         }
 
@@ -68,7 +71,7 @@
             if (player.IsBust()) Console.WriteLine("You are bust!");
             if (croupier.IsBust()) Console.WriteLine("Croupier is bust!");
 
-            if (player.IsBust() && croupier.IsBust() || player.Score == croupier.Score) Console.WriteLine("Draw!");
+            if (player.IsBust() && croupier.IsBust()) Console.WriteLine("Draw!");
             else if (!player.IsBust() && croupier.IsBust()) Console.WriteLine("You win!");
             else if (player.IsBust() && !croupier.IsBust()) Console.WriteLine("You lose!");
             else
