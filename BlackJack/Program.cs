@@ -56,7 +56,10 @@
         public static string AskForAnotherCard() {
             Console.WriteLine("Do you want to draw another card? (y/n)");
             string answer = string.Empty;
-            while (answer != "y" && answer != "n") answer = Console.ReadLine().ToLower();
+            while (answer != "y" && answer != "n"){
+                answer = Console.ReadLine() ?? "".ToLower();
+                if (answer != "y" && answer != "n") Console.WriteLine("Please enter y or n");
+            }
             return answer;
         }
 
