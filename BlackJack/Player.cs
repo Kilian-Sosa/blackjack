@@ -19,7 +19,11 @@
 
         public void Print() {
             Console.WriteLine($"{name}'s hand:");
-            foreach (Card card in hand) Console.WriteLine(card.ToString());
+            for (int i = 0; i < 7; i++) {
+                foreach (Card card in hand)
+                    Console.Write(card.ToString().Split('\n')[i] + " ");
+                Console.WriteLine();
+            }
         }
     }
 
@@ -70,15 +74,13 @@
         }
 
         public void PrintFirstCard(){
+            string hiddenCard = "+-------+\n|?      |\n|       |\n|   ?   |\n|       |\n|      ?|\n+-------+";
             Console.WriteLine($"{name}'s hand:");
-            Console.WriteLine(hand[0].ToString());
-            Console.WriteLine("+-------+");
-            Console.WriteLine("|?      |");
-            Console.WriteLine("|       |");
-            Console.WriteLine("|   ?   |");
-            Console.WriteLine("|       |");
-            Console.WriteLine("|      ?|");
-            Console.WriteLine("+-------+");
+            for (int i = 0; i < 7; i++) {
+                Console.Write(hand[0].ToString().Split('\n')[i] + " ");
+                Console.Write(hiddenCard.Split('\n')[i] + " ");
+                Console.WriteLine();
+            }
         }
     }
 }
