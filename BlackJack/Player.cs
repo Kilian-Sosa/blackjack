@@ -1,26 +1,21 @@
 ﻿namespace BlackJack {
     public class Player {
-        protected List<Card> hand;
-        protected string name;
+        protected List<Card> Hand;
+        public string Name {  get; protected set; }
 
         public Player(string name) {
-            hand = new List<Card>();
-            this.name = name;
-        }
-
-        public string Name {
-            get { return name; }
-            private set { this.name = value; }
+            Hand = new List<Card>();
+            this.Name = name;
         }
 
         public virtual void Draw(Deck deck) {
-            hand.Add(deck.Draw());
+            Hand.Add(deck.Draw());
         }
 
         public void Print() {
-            Console.WriteLine($"{name}'s hand:");
+            Console.WriteLine($"{Name}'s hand:");
             for (int i = 0; i < 7; i++) {
-                foreach (Card card in hand)
+                foreach (Card card in Hand)
                     Console.Write(card.ToString().Split('\n')[i] + " ");
                 Console.WriteLine();
             }
@@ -33,13 +28,13 @@
         public BlackJackPlayer(string name): base(name) { }
 
         public bool HasAce() {
-            foreach (Card card in hand) if (card.Value == 1) return true;
+            foreach (Card card in Hand) if (card.Value == 1) return true;
             return false;
         }
 
         public void CalculateScore() {
             score = 0;
-            foreach (Card card in hand) 
+            foreach (Card card in Hand) 
                 if (card.Value > 10) score += 10;
                 else score += card.Value;
             if (HasAce() && score + 10 <= 21) score += 10;
@@ -54,7 +49,7 @@
             return score > 21;
         }
         public int GetNumberOfCards() {
-            return hand.Count;
+            return Hand.Count;
         }
     }
 
@@ -75,9 +70,9 @@
 
         public void PrintFirstCard(){
             string hiddenCard = "+-------+\n|?      |\n|       |\n|   ?   |\n|       |\n|      ?|\n+-------+";
-            Console.WriteLine($"{name}'s hand:");
+            Console.WriteLine($"{Name}'s hand:");
             for (int i = 0; i < 7; i++) {
-                Console.Write(hand[0].ToString().Split('\n')[i] + " ");
+                Console.Write(Hand[0].ToString().Split('\n')[i] + " ");
                 Console.Write(hiddenCard.Split('\n')[i] + " ");
                 Console.WriteLine();
             }
