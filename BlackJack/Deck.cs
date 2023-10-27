@@ -1,26 +1,26 @@
 ﻿namespace BlackJack {
     public class Deck {
-        private List<Card> cards;
+        private List<Card> Cards;
 
         public Deck() {
-            cards = new List<Card>();
+            Cards = new List<Card>();
             foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
-                for (int i = 1; i < 13; i++) cards.Add(new Card(suit, i));
+                for (int i = 1; i < 13; i++) Cards.Add(new Card(suit, i));
         }
 
         public void Shuffle() {
             Random random = new Random();
-            cards = cards.OrderBy(x => random.Next()).ToList();
+            Cards = Cards.OrderBy(x => random.Next()).ToList();
         }
 
         public Card Draw() {
-            Card card = cards[0];
-            cards.RemoveAt(0);
+            Card card = Cards[0];
+            Cards.RemoveAt(0);
             return card;
         }
 
         public void Print() {
-            foreach (Card card in cards) Console.WriteLine(card.ToString());
+            foreach (Card card in Cards) Console.WriteLine(card.ToString());
         }
     }
 }
